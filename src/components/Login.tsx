@@ -1,5 +1,5 @@
 "use client";
-import { Avatar } from "@mui/material";
+import Button from "@mui/material/Button";
 import { useSession, signIn, signOut } from "next-auth/react";
 const Login = () => {
   const { data: session } = useSession();
@@ -7,18 +7,18 @@ const Login = () => {
     return (
       <>
         signed in as {session?.user?.email} <br />
-        <p>Welcome {session?.user?.name}</p>
-        <Avatar
-          alt={session?.user?.name as string}
-          src={session?.user?.image as string}
-        />
-        <button onClick={() => signOut()}>Sign out </button>
+        <Button variant="contained" color="error" onClick={() => signOut()}>
+          Sign out{" "}
+        </Button>
       </>
     );
   }
   return (
     <>
-      Not Signed In <br /> <button onClick={() => signIn()}>Sign in</button>
+      <h2>Please log in</h2> <br />{" "}
+      <Button variant="contained" color="success" onClick={() => signIn()}>
+        Sign in
+      </Button>
     </>
   );
 };
